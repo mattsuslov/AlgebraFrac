@@ -14,22 +14,22 @@ class Canvas : public QGraphicsItem
 public:
     Canvas();
 
-    QRectF boundingRect() const {
+    QRectF boundingRect() const override {
         return QRectF(0, 0, width_, height_);
     }
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
 
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override {
         pressed_ = QVector2D(event->pos());
     }
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override {
         if ((QVector2D(event->pos()) - pressed_).length() >= 10) {
             move_ = true;
             cur_ = QVector2D(event->pos());
             update();
         }
     }
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override {
         if (move_) {
             double scale = (rt_ - lb_).x() / width_;
             pressed_ *= scale;

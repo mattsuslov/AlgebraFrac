@@ -52,9 +52,9 @@ void Canvas::gen_pixmap() {
     for (double y = lb_.y(), dy = 1.0 / scale; y <= rt_.y(); y += dy) {
         for (double x = lb_.x(), dx = 1.0 / scale; x <= rt_.x(); x += dx) {
             Complex c(x, y);
-            int MAX_N = 100;
-            int n = nuton(c, MAX_N);
-//            int n = zhulia(c, MAX_N);
+            int MAX_N = 500;
+//            int n = nuton(c, MAX_N);
+            int n = zhulia(c, MAX_N);
 //            int n = mondelbrot(c, MAX_N);
             painter.setPen(QColor(Qt::black));
             if (n == -1) {
